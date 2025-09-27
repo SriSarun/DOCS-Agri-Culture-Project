@@ -111,6 +111,139 @@
     *   `text-2xl`, `font-bold`, `text-center` போன்ற வகுப்புகள் தலைப்பை அழகுபடுத்துகின்றன.
     *   அட்டவணையை அழகுபடுத்த `min-w-full`, `bg-green-700`, `text-white`, `p-3`, `border-collapse` போன்ற வகுப்புகள் பயன்படுத்தப்பட்டுள்ளன.
 *   **Responsive Design:** `overflow-x-auto` என்ற வகுப்பு, சிறிய திரைகளில் (மொபைல் போன்றவை) அட்டவணை முழுமையாகத் தெரியவில்லை என்றால், பயனர்கள் கிடைமட்டமாக ஸ்க்ரோல் செய்ய அனுமதிக்கிறது. இது ஒரு எளிய மற்றும் பயனுள்ள பதிலளிக்கக்கூடிய தீர்வாகும்.
+---
+** பயனர் கேட்டுக்கொண்டபடி, அட்டவணை வடிவமைப்பைத் தவிர்த்து, `div` களைப் பயன்படுத்தி நவீன இணையப் பக்கத்தைப் போன்ற தோற்றத்தில் தகவல்களை மாற்றி அமைத்துள்ளேன். **
+
+இந்த வடிவமைப்பு, தகவல்களைத் தனித்தனிப் பிரிவுகளாகப் பிரித்து, கார்டு (Card) போன்ற அமைப்பில் காட்டுவதால், பயனர்கள் தகவல்களை எளிதாகப் புரிந்துகொள்ள முடியும். இது மொபைல் போன்ற சிறிய திரைகளுக்கும் ஏற்றவாறு தானாகவே மாறும்.
+
+கீழே உள்ள புதிய குறியீட்டை `index.html` கோப்பில் சேமித்து உங்கள் உலாவியில் பார்க்கவும்.
+
+### புதிய HTML குறியீடு (Div-based Card Layout)
+
+```html
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>மாப்பிள்ளை சம்பா நெல் சாகுபடி விவரங்கள்</title>
+    <!-- Tailwind CSS ஐ இணைக்க -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        <h1 class="text-3xl font-bold text-center text-green-800 mb-8">மாப்பிள்ளை சம்பா - சாகுபடி வழிகாட்டி</h1>
+
+        <!-- ಮುಖ್ಯ ಕಾರ್ಡ್ -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            
+            <!-- பயிர் மற்றும் பருவம் -->
+            <div class="p-6 bg-green-700 text-white">
+                <h2 class="text-2xl font-bold">மாப்பிள்ளை சம்பா</h2>
+                <p class="text-md mt-1">விதைப்பு காலம்: ஆடி மாசம் (July-August)</p>
+            </div>
+
+            <div class="p-6">
+                <!-- Grid Layout для разделения контента -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- இடது பகுதி: வளர்ச்சி மற்றும் உரங்கள் -->
+                    <div>
+                        <!-- வளர்ச்சி நிலைகள் -->
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 border-b-2 border-green-200 pb-2 mb-3">வளர்ச்சி நிலைகள் (120-135 நாட்கள்)</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Stage 1 - நாற்றங்கால் (Nursery):</b> 0-25 நாட்கள்</li>
+                                <li><b>Stage 2 - வளர்ச்சிப் பருவம் (Vegetative):</b> 26-70 நாட்கள்</li>
+                                <li><b>Stage 3 - பூக்கும் பருவம் (Flowering):</b> 71-100 நாட்கள்</li>
+                                <li><b>Stage 4 - அறுவடை (Harvest):</b> 101-135 நாட்கள்</li>
+                            </ul>
+                        </div>
+
+                        <!-- உரப் பரிந்துரை -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 border-b-2 border-green-200 pb-2 mb-3">உரப் பரிந்துரை</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Stage 1:</b> யூரியா - 16kg/acre</li>
+                                <li><b>Stage 2:</b> டிஏபி - 25kg/acre</li>
+                                <li><b>Stage 3:</b> பொட்டாஷ் - 12kg/acre</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- வலது பகுதி: சந்தை விலை மற்றும் இயற்கை உரம் -->
+                    <div>
+                        <!-- சந்தை விலை -->
+                        <div class="mb-6 bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">சந்தை விலை பகுப்பாய்வு (₹/kg)</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>2021: <b>₹28</b></li>
+                                <li>2022: <b>₹30</b></li>
+                                <li>2023: <b>₹32</b></li>
+                                <li>2024 (மதிப்பீடு): <b>₹34*</b></li>
+                                <li>2025 (கணிப்பு): <b>₹36*</b></li>
+                            </ul>
+                        </div>
+
+                        <!-- இயற்கை உரங்கள் -->
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">இயற்கை உரப் பரிந்துரைகள்</h3>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>ஜீவாமிர்தம்: 20 லிட்டர்/acre</li>
+                                <li>பன்சகவ்யம்: 10 லிட்டர்/acre</li>
+                                <li>வேப்ப எண்ணெய்: 5 லிட்டர்/acre</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- நோய்கள் மற்றும் மேலாண்மை -->
+                <div class="mt-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 border-b-2 border-green-200 pb-2 mb-4">நோய் மேலாண்மை</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- நோய் 1: குலை நோய் -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="text-lg font-bold text-red-700">1. குலை நோய் (Blast - Pyricularia oryzae)</h4>
+                            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                                <div><b class="font-semibold">அறிகுறிகள்:</b> இலை மீது மஞ்சள் மையம் மற்றும் கருப்பு ஓரங்கள் கொண்ட புள்ளிகள்.</div>
+                                <div><b class="font-semibold">காரணங்கள்:</b> அதிக ஈரப்பதம், அடர்த்தியான விதைப்பு.</div>
+                                <div><b class="font-semibold">ரசாயன மருந்து:</b> Bavistin 50 WP அல்லது Tricyclazole 75 WP.</div>
+                                <div><b class="font-semibold">இயற்கை முறை:</b> வேப்ப எண்ணெய் 5%, பொட்டாசியம் பைகார்பனேட் கரைசல்.</div>
+                            </div>
+                        </div>
+
+                        <!-- நோய் 2: பழுப்பு புள்ளி நோய் -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="text-lg font-bold text-red-700">2. பழுப்பு புள்ளி நோய் (Brown Spot - Bipolaris oryzae)</h4>
+                            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                                <div><b class="font-semibold">அறிகுறிகள்:</b> இலைகளில் சிறிய கருப்பு புள்ளிகள், விதைகள் பாதிக்கப்படலாம்.</div>
+                                <div><b class="font-semibold">காரணங்கள்:</b> பொட்டாசியம் குறைபாடு, பாதிக்கப்பட்ட விதைகளை விதைப்பது.</div>
+                                <div><b class="font-semibold">ரசாயன மருந்து:</b> Mancozeb 75 WP.</div>
+                                <div><b class="font-semibold">இயற்கை முறை:</b> வேப்ப எண்ணெய், каоலின் (Kaolin) தெளிப்பு.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+### புதிய வடிவமைப்பின் சிறப்பம்சங்கள்:
+
+*   **கார்டு அமைப்பு (Card Layout):** முழுத் தகவலும் ஒரு பெரிய, அழகிய கார்டுக்குள் வைக்கப்பட்டுள்ளது.
+*   **பிரிவுகளாகப் பிரித்தல்:** தலைப்பு, வளர்ச்சி நிலைகள், உரங்கள், நோய்கள் என ஒவ்வொரு தகவலும் தெளிவாகத் தனித்தனி `div` களில் பிரிக்கப்பட்டுள்ளது.
+*   **Grid System:** வளர்ச்சி நிலைகள் மற்றும் சந்தை விலை போன்ற பகுதிகளைப் பக்கவாட்டில் வைப்பதற்காக Tailwind CSS இன் `grid` அமைப்பு பயன்படுத்தப்பட்டுள்ளது. இது பெரிய திரைகளில் দেখতে அழகாக இருக்கும்.
+*   **சிறந்த வாசிப்பு அனுபவம்:** தடித்த எழுத்துக்கள், தலைப்புகள், மற்றும் பட்டியல்கள் பயன்படுத்தப்பட்டிருப்பதால் தகவல்களைப் படிப்பது மிகவும் எளிது.
+*   **பதிலளிக்கக்கூடிய வடிவமைப்பு (Responsive):** இந்த வடிவமைப்பு மொபைல், டேப்லெட் மற்றும் கணினி என அனைத்து சாதனங்களிலும் சரியாகத் தெரியும்.
+
+அடுத்து என்ன செய்ய வேண்டும் என்று நீங்கள் கூறலாம். உதாரணமாக:
+*   புதிய பயிர்களைச் சேர்க்க ஒரு படிவம் (Form) வேண்டுமா?
+*   JavaScript பயன்படுத்தி ஏதேனும் ஊடாடும் (Interactive) அம்சங்களைச் சேர்க்க வேண்டுமா?
 
 **அடுத்த படி:**
 
