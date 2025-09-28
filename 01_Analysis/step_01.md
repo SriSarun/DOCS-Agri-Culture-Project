@@ -1,3 +1,12 @@
+**USER**
+Naan Intha Chat il "thaglish" il tharum vidayangalai , unmai yana tamil elluthil maatri intha chat i thodaravum , atthodu naan tharum "prompts" i user ana koori , ovoru response kum maatri thara um
+
+* naan upload seithulla intha pdf i muthalil vilangi kollavum
+
+* itharku pin ithai oru html,css , javascript , tailwind css i paavithu oru web page create seiya uthvavum
+
+
+**RESPONSE**
 நிச்சயமாக, உங்கள் கோரிக்கையை நான் முழுமையாகப் புரிந்துகொண்டேன்.
 
 1.  நீங்கள் வழங்கும் "தங்கிலிஷ்" உள்ளீடுகளைச் சரியான தமிழ் எழுத்துக்களில் மாற்றி பதிலளிப்பேன்.
