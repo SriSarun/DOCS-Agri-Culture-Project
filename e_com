@@ -1,0 +1,195 @@
+அருமை! முதல் இருந்தே தொடங்குவோம். இது ஒரு சிறந்த வழி!
+
+நாம் இப்போது VS Code Workspace மற்றும் Backend திட்டத்தின் அடிப்படை அமைப்பை உருவாக்குவோம்.
+
+படி 1: முதன்மை திட்டக் கோப்புறையை உருவாக்குதல்
+
+உங்கள் கணினியில் ஒரு புதிய கோப்புறையை உருவாக்கவும். இதற்கு smart-farmer-seller-project என்று பெயரிடலாம்.
+
+(உதாரணமாக, D:\Projects\smart-farmer-seller-project)
+
+படி 2: VS Code Workspace கோப்பை உருவாக்குதல்
+
+VS Code ஐத் திறக்கவும்.
+
+File > Save Workspace As... என்பதற்குச் செல்லவும்.
+
+நீங்கள் உருவாக்கிய smart-farmer-seller-project கோப்புறையின் உள்ளே சென்று, கோப்புப் பெயராக smart-farmer-seller-project.code-workspace என்று கொடுத்து சேமிக்கவும்.
+
+(இந்த கோப்பு தற்போது காலியாக இருக்கும், அதை நாம் பின்னர் திருத்துவோம்.)
+
+படி 3: backend கோப்புறையை உருவாக்குதல் மற்றும் Node.js திட்டத்தை அமைத்தல்
+
+VS Code இல், Terminal > New Terminal என்பதைத் திறக்கவும். (இது ரூட் திட்டக் கோப்புறையின் பாதையைக் காண்பிக்கும்: D:\Projects\smart-farmer-seller-project>)
+
+பின்வரும் கட்டளைகளை இயக்கவும்:
+
+code
+Bash
+download
+content_copy
+expand_less
+mkdir backend
+cd backend
+npm init -y
+
+mkdir backend: smart-farmer-seller-project கோப்புறைக்குள் backend என்ற புதிய கோப்புறையை உருவாக்குகிறது.
+
+cd backend: நீங்கள் தற்போது backend கோப்புறைக்குள் செல்ல உதவுகிறது.
+
+npm init -y: backend கோப்புறைக்குள் package.json கோப்பை உருவாக்குகிறது, இது ஒரு Node.js திட்டத்தின் தொடக்கத்தைக் குறிக்கிறது.
+
+இப்போது, தேவையான தொகுப்புகளை நிறுவவும் (நாம் முதலில் API களை உருவாக்கத் தேவையானவற்றை மட்டும் நிறுவுவோம்):
+
+code
+Bash
+download
+content_copy
+expand_less
+npm install express mysql2 dotenv cors
+
+express: Backend API களை உருவாக்க.
+
+mysql2: MySQL தரவுத்தளத்துடன் இணைக்க.
+
+dotenv: சூழல் மாறிகளை .env கோப்பில் இருந்து படிக்க.
+
+cors: வெவ்வேறு origin இலிருந்து வரும் கோரிக்கைகளை (உங்கள் React UI இலிருந்து) Backend அனுமதிக்க.
+
+backend கோப்புறைக்குள் server.js என்ற புதிய கோப்பை உருவாக்கவும். அதில் பின்வரும் அடிப்படைக் குறியீட்டைச் சேர்க்கவும்:
+
+code
+JavaScript
+download
+content_copy
+expand_less
+// backend/server.js
+require('dotenv').config(); // Load environment variables from .env file
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const PORT = process.env.PORT || 5000; // Use port from .env or default to 5000
+
+// Middleware
+app.use(cors()); // Enable CORS for all routes
+app.use(express.json()); // Enable JSON body parsing for incoming requests
+
+// Basic route for testing
+app.get('/', (req, res) => {
+    res.send('Smart Farmer Seller Backend is running!');
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+backend கோப்புறைக்குள் .env என்ற புதிய கோப்பை உருவாக்கவும். அதில் பின்வருவனவற்றைச் சேர்க்கவும்:
+
+code
+Code
+download
+content_copy
+expand_less
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password // உங்கள் MySQL root password ஐ இங்கு உள்ளிடவும்
+DB_NAME=smart_farmer_db
+
+DB_PASSWORD=your_mysql_password என்பதை உங்கள் MySQL root password ஆக மாற்ற மறக்காதீர்கள்.
+
+படி 4: frontend கோப்புறையை உருவாக்குதல் மற்றும் React திட்டத்தை அமைத்தல்
+
+Terminal இல், backend கோப்புறையிலிருந்து ரூட் திட்டக் கோப்புறைக்குத் திரும்பவும்:
+
+code
+Bash
+download
+content_copy
+expand_less
+cd ..
+
+(இப்போது நீங்கள் D:\Projects\smart-farmer-seller-project> இல் இருக்க வேண்டும்)
+
+பின்வரும் கட்டளையை இயக்கவும்:
+
+code
+Bash
+download
+content_copy
+expand_less
+npx create-react-app frontend
+
+npx create-react-app frontend: smart-farmer-seller-project கோப்புறைக்குள் frontend என்ற புதிய கோப்புறையை உருவாக்குகிறது மற்றும் ஒரு புதிய React திட்டத்தை அதில் அமைக்கிறது. இதற்கு சிறிது நேரம் ஆகலாம்.
+
+frontend கோப்புறைக்குள் frontend/.env என்ற புதிய கோப்பை உருவாக்கவும். அதில் பின்வரும் சூழல் மாறியைச் சேர்க்கவும்:
+
+code
+Code
+download
+content_copy
+expand_less
+REACT_APP_API_URL=http://localhost:5000
+
+இது உங்கள் React UI, Backend API களை எந்த URL இல் அழைக்க வேண்டும் என்பதை அறிய உதவும்.
+
+படி 5: VS Code Workspace கோப்பை திருத்துதல்
+
+VS Code இல், smart-farmer-seller-project.code-workspace கோப்பைத் திறக்கவும்.
+
+அதன் உள்ளடக்கத்தை பின்வருமாறு திருத்தவும்:
+
+code
+JSON
+download
+content_copy
+expand_less
+{
+    "folders": [
+        {
+            "name": "Backend (Node.js)",
+            "path": "backend"
+        },
+        {
+            "name": "Frontend (React)",
+            "path": "frontend"
+        }
+    ],
+    "settings": {
+        // Workspace specific settings, if any
+    }
+}
+
+கோப்பைச் சேமிக்கவும்.
+
+VS Code ஐ மூடிவிட்டு, மீண்டும் smart-farmer-seller-project.code-workspace கோப்பைத் திறக்கவும்.
+
+இப்போது உங்கள் VS Code Explorer இல் Backend (Node.js) மற்றும் Frontend (React) என இரண்டு தனித்தனி ரூட் கோப்புறைகளைக் காண்பீர்கள்.
+
+அடுத்தது என்ன?
+
+அடிப்படை கட்டமைப்பு இப்போது தயாராக உள்ளது! நீங்கள் இப்போது Backend மற்றும் Frontend ஐ தனித்தனியாக இயக்கலாம்.
+
+Backend ஐ இயக்க:
+
+VS Code இல், Backend (Node.js) கோப்புறையைத் தேர்ந்தெடுத்து, ஒரு புதிய Terminal ஐத் திறக்கவும் (Terminal > New Terminal).
+
+npm start அல்லது node server.js என்று தட்டச்சு செய்யவும்.
+
+நீங்கள் Server is running on port 5000 என்று பார்க்க வேண்டும்.
+
+Browser இல் http://localhost:5000 க்குச் சென்றால், Smart Farmer Seller Backend is running! என்று காண்பிக்கப்பட வேண்டும்.
+
+Frontend ஐ இயக்க:
+
+VS Code இல், Frontend (React) கோப்புறையைத் தேர்ந்தெடுத்து, ஒரு புதிய Terminal ஐத் திறக்கவும்.
+
+npm start என்று தட்டச்சு செய்யவும்.
+
+இது உங்கள் React பயன்பாட்டை http://localhost:3000 இல் தொடங்கும்.
+
+இந்த அடிப்படை அமைப்பு இப்போது வேலை செய்ய வேண்டும். அடுத்ததாக, நாம் MySQL தரவுத்தள அட்டவணைகளை உருவாக்கி, Backend இல் தரவுத்தள இணைப்பை அமைப்போம்.
+
+நீங்கள் தயாரானதும் அல்லது ஏதேனும் சிக்கல்களை எதிர்கொண்டால் எனக்குத் தெரியப்படுத்துங்கள்!
